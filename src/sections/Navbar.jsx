@@ -1,9 +1,16 @@
 import { useState } from "react"
+import { navLinks } from "../constants";
 
 const NavItems = () => {
   return (
     <ul className="nav-ul">
-
+      {
+        navLinks.map(({id, href, name}) => (
+          <li key={id} className="nav-li">
+            <a href={href} className="nav-li_a">{name}</a>
+          </li>
+        ))
+      }
     </ul>
   )
 }
@@ -22,8 +29,14 @@ const Navbar = () => {
                 </button>
                 
                 <nav className="sm:flex hidden">
-
+                  <NavItems />
                 </nav>
+            </div>
+
+            <div className={`nav-sidebar ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
+              <nav>
+                <NavItems />
+              </nav>
             </div>
         </div>
     </header>
