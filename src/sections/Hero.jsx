@@ -7,6 +7,9 @@ import { useMediaQuery } from "react-responsive"
 import { calculateSizes } from '../constants'
 import Target from "../components/Target"
 import ReactLogo from "../components/ReactLogo"
+import Cube from "../components/Cube"
+import Rings from "../components/Rings"
+import HeroCamera from "../components/HeroCamera"
 
 const Hero = () => {
   const isSmall = useMediaQuery({ maxWidth: 440 });
@@ -26,14 +29,18 @@ const Hero = () => {
             <Canvas className="w-full h-full">
                 <Suspense fallback={<CanvasLoader />}>
                   <PerspectiveCamera makeDefault position={[0, 0, 30]} />
-                  <HackerRoom 
+                  <HeroCamera>
+                    <HackerRoom 
                     scale={sizes.deskScale} 
                     position={sizes.deskPosition}
                     rotation={[0, -Math.PI, 0]}
-                  />
+                    />
+                  </HeroCamera>
                   <group>
                     <Target position={sizes.targetPosition}/>
                     <ReactLogo position={sizes.reactLogoPosition}/>
+                    <Cube position={sizes.cubePosition}/>
+                    <Rings position={sizes.ringPosition}/>
                   </group>
                   <ambientLight intensity={1}/>
                   <directionalLight intensity={0.5} position={[10, 10, 10]}/>

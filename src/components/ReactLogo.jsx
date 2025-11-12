@@ -1,13 +1,16 @@
 import React, { useRef } from 'react'
 import { Float, useGLTF } from '@react-three/drei'
+import reactModelUrl from '../assets/models/react.glb?url'
 
 const ReactLogo = (props) => {
-  const { nodes, materials } = useGLTF('/models/react.glp')
+  const modelUrl = reactModelUrl
+  // debug: log which URL the component attempts to load (check browser console)
+  console.log('[ReactLogo] loading model:', modelUrl)
+  const { nodes, materials } = useGLTF(modelUrl)
   return (
     <Float  floatIntensity={1}>
-      <group {...props} scale={0.01}>
+      <group position={[8, 8, 0]} {...props} scale={0.005} dispose={null}>
         <mesh
-          dispose={null}
           geometry={nodes['React-Logo_Material002_0'].geometry}
           material={materials['Material.002']}
           position={[0, 7.935, 18.102]}
@@ -19,6 +22,6 @@ const ReactLogo = (props) => {
   )
 }
 
-useGLTF.preload('/models/react.gltf')
+useGLTF.preload(reactModelUrl)
 
 export default ReactLogo;
