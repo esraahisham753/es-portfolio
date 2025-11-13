@@ -11,7 +11,7 @@ const HeroCamera = ({ children }) => {
 
     return (
     <group>
-
+        {children}
     </group>
     )
 }
